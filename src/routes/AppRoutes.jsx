@@ -5,6 +5,11 @@ import { Home } from "@/components/Home";
 import { Movies } from "@/components/Movies";
 import { MovieDetails } from "@/components/MovieDetails";
 import { Tickets } from "@/components/Tickets";
+import { AdminLayout } from "@/components/pages/AdminPages/AdminLayout";
+import { Dashboard } from "@/components/pages/AdminPages/Dashboard";
+import { ListShows } from "@/components/pages/AdminPages/ListShows";
+import{AddShows} from"@/components/pages/AdminPages/AddShows";
+import { ListBooking } from "@/components/pages/AdminPages/ListBooking";
 const apiKey = "c0b7f3fa09aca04843f214ed43eb8e45";
 
 export const router = createBrowserRouter([
@@ -45,4 +50,31 @@ export const router = createBrowserRouter([
       }
     ],
   },
+  {
+     path:"/admin",
+    Component:AdminLayout,
+    children:[
+      {
+        index:true,
+        Component:Dashboard,
+      },
+      {
+        path:"addshows",
+        Component:AddShows
+      },
+      {
+       path:"listshows",
+        Component:ListShows
+      },
+      {
+        path:"listbooking",
+        Component:ListBooking
+      }
+
+
+    ]
+
+    
+
+  }
 ]);
