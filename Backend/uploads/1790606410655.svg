@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+<defs>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#172033" flood-opacity="0.08"/>
+  </filter>
+  <style>
+    .title{font-family:Inter,Arial,sans-serif;font-size:28px;font-weight:700;fill:#172033}
+    .h2{font-family:Inter,Arial,sans-serif;font-size:18px;font-weight:700;fill:#172033}
+    .body{font-family:Inter,Arial,sans-serif;font-size:14px;font-weight:400;fill:#172033}
+    .small{font-family:Inter,Arial,sans-serif;font-size:12px;font-weight:400;fill:#718096}
+    .label{font-family:Inter,Arial,sans-serif;font-size:12px;font-weight:600;fill:#718096}
+    .nav{font-family:Inter,Arial,sans-serif;font-size:14px;font-weight:500}
+    .btn{font-family:Inter,Arial,sans-serif;font-size:13px;font-weight:600}
+  </style>
+</defs>
+<rect width="1440" height="900" fill="#F6F8FC"/>
+<text x="28" y="30" class="small">09 Movie Details</text>
+<g id="sidebar">
+<rect x="0" y="0" width="245" height="900" fill="#101A2B"/>
+<text x="28" y="58" fill="#FFFFFF" font-family="Inter,Arial" font-size="18" font-weight="700">▣ CineAdmin</text>
+<text x="34" y="105" class="nav" fill="#FFFFFF">⌂  Dashboard</text><rect x="14" y="127" width="217" height="42" rx="9" fill="#2563EB"/><text x="34" y="155" class="nav" fill="#FFFFFF">▣  Movies</text><text x="34" y="205" class="nav" fill="#FFFFFF">▤  Bookings</text><text x="34" y="255" class="nav" fill="#FFFFFF">◔  Revenue</text><text x="34" y="810" class="nav" fill="#FFFFFF">⚙  Settings</text>
+<text x="34" y="852" class="nav" fill="#FFFFFF">↪  Logout</text>
+</g><g id="topbar">
+<rect x="245" y="0" width="1195" height="78" fill="#FFFFFF" stroke="#E6EAF0"/>
+<rect x="280" y="20" width="300" height="38" rx="9" fill="#F7F9FC" stroke="#E6EAF0"/>
+<text x="300" y="44" class="small">⌕  Search...</text>
+<text x="1305" y="45" class="body">Admin</text>
+<circle cx="1375" cy="39" r="19" fill="#DDE5F4"/>
+<text x="1366" y="44" class="small">A</text>
+</g><text x="280" y="112" class="small">← Back to Movies</text><rect x="280" y="140" width="80" height="108" rx="6" fill="#D7DFEE"/>
+<rect x="287" y="148" width="66" height="92" rx="3" fill="#8FA1BF"/>
+<text x="320.0" y="198.0" text-anchor="middle" class="small" fill="#FFFFFF">B</text><text x="380" y="170" class="title">Batman</text><text x="380" y="198" class="small">Action  •  2h 30m  •  English</text><rect x="1260" y="140" width="120" height="38" rx="8" fill="#FFFFFF" stroke="#E6EAF0"/><text x="1320.0" y="164" text-anchor="middle" class="btn" fill="#2563EB">Edit Movie</text><line x1="280" y1="275" x2="1400" y2="275" stroke="#E6EAF0"/><text x="280" y="315" class="h2">Movie Details</text><text x="450" y="315" class="h2" fill="#2563EB">Shows</text><rect x="1240" y="285" width="140" height="38" rx="8" fill="#2563EB" stroke="#2563EB"/><text x="1310.0" y="309" text-anchor="middle" class="btn" fill="#FFFFFF">+  Add Day</text><rect x="280" y="350" width="1120" height="180" rx="12" fill="#FFFFFF" stroke="#E6EAF0" filter="url(#shadow)"/><text x="305" y="385" class="h2">▣  Friday, Sep 27, 2025</text><text x="1360" y="385" text-anchor="end" class="small">2 shows</text><text x="325" y="415" class="body">06:00 PM</text><text x="520" y="415" class="body">Hall 1</text><text x="700" y="415" class="body">100 EGP</text><text x="850" y="415" class="small">40/100 seats</text><rect x="1190" y="390" width="60" height="38" rx="8" fill="#FFFFFF" stroke="#E6EAF0"/><text x="1220.0" y="414" text-anchor="middle" class="btn" fill="#2563EB">Edit</text><text x="325" y="470" class="body">09:00 PM</text><text x="520" y="470" class="body">Hall 2</text><text x="700" y="470" class="body">100 EGP</text><text x="850" y="470" class="small">35/100 seats</text><rect x="1190" y="445" width="60" height="38" rx="8" fill="#FFFFFF" stroke="#E6EAF0"/><text x="1220.0" y="469" text-anchor="middle" class="btn" fill="#2563EB">Edit</text></svg>

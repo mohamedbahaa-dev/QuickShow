@@ -5,9 +5,8 @@ import axios from "axios";
 
 import { shows } from "@/contexts/movies";
 import { CardImage } from "@/components/CardImage";
-import { MoviesTable } from "@/components/MoviesTable";
-import { Edit } from "@/components/Edit";
-
+import { MoviesTable } from "@/components/MoviesTable"
+import { AddMovie } from "@/components/AddMovie";
 export function AddShows() {
 
     const { movies, setMovies } = useContext(shows);
@@ -53,7 +52,7 @@ export function AddShows() {
         <div className="w-full h-screen">
             <div className="flex justify-between ">
                  <h2 className="text-white capitalize font-bold m-4 text-lg">add <span className="text-[#922B3E] underline">movies</span></h2>
-            <button className="text-white bg-[#1d0b10] rounded-xl text-gray-500 p-4 capitalize m-4 cursor-pointer">add movie</button>
+            <AddMovie/>
             </div>
            
             <MoviesTable />
