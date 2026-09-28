@@ -9,8 +9,10 @@ import {
 } from "@/components/ui/card"
 import { Star } from "lucide-react"
 import { Link } from "react-router"
-
-export function CardImage({ logo, title, description,rating ,id,hoveredCard,setHoveredCard}) {
+import { hover } from "@/contexts/hover";
+import { useContext } from "react";
+export function CardImage({ logo, title, description,rating ,id,role}) {
+  const {hoveredCard, setHoveredCard} = useContext(hover);
   return (
     <Card  onMouseEnter={() => setHoveredCard(id)}
   onMouseLeave={() => setHoveredCard(null)}
@@ -44,8 +46,8 @@ export function CardImage({ logo, title, description,rating ,id,hoveredCard,setH
           {description}
         </CardDescription>
       </CardHeader>
-
-      <CardFooter className="bg-gray-800 px-3 pb-3 pt-1 flex justify-between">
+      {role=="user"?(
+           <CardFooter className="bg-gray-800 px-3 pb-3 pt-1 flex justify-between">
         <Button className="w-fit cursor-pointer bg-[oklch(63.7%_0.237_25.331)] rounded-xl px-5 py-1.5 text-[11px] text-white hover:opacity-75 transition-opacity duration-300 capitalize font-semibold">
           <Link to={`/movies/${id}`}>buy tickets</Link>
         </Button>
@@ -55,6 +57,9 @@ export function CardImage({ logo, title, description,rating ,id,hoveredCard,setH
           </div>
        
       </CardFooter>
+      ):""}
+
+   
     </Card>
   )
 }

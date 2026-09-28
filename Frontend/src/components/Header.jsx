@@ -1,12 +1,11 @@
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 import { useContext, useState } from "react";
-import { show } from "../contexts/popup";
 import { Link } from "react-router";
-import { Show, SignInButton, SignUpButton, UserButton,useUser} from '@clerk/react'
+import { Show, SignInButton, UserButton,useUser} from '@clerk/react'
 import toast from "react-hot-toast";
 export function Header() {
-  const { setpopUp } = useContext(show);
+ 
 
   const [menuOpen, setMenuOpen] = useState(false);
     const { isSignedIn } = useUser()

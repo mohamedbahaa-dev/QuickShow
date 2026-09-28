@@ -9,8 +9,6 @@ let search=watch("text")
 let movies =useLoaderData()
 
 let navigate=useNavigate()
-const [hoveredCard, setHoveredCard] = useState(null);
-
         useEffect(() => {
   const timer = setTimeout(() => {
     navigate(`/movies?search=${encodeURIComponent(search || "")}`);
@@ -61,8 +59,7 @@ const [hoveredCard, setHoveredCard] = useState(null);
                     {movies.map((item)=>{
                         return(
                             <CardImage logo={item?.poster_path} title={item?.original_title} 
-                            description={item?.overview} rating={item?.vote_average.toFixed(2)} id={item.id}   hoveredCard={hoveredCard}
-  setHoveredCard={setHoveredCard} />
+                            description={item?.overview} rating={item?.vote_average.toFixed(2)} id={item.id} role={"user"} />
                         )
                     })}
                 </div>
@@ -80,3 +77,4 @@ import { Search } from "lucide-react"
 import { useLoaderData } from "react-router"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router";
+

@@ -1,12 +1,10 @@
 import { Header } from "./Header";
 import { Button } from "@/components/ui/button";
 import { useContext } from "react";
-import { show } from "../contexts/popup";
+
 import { Shows } from "./Shows";
 import { Link } from "react-router";
 export function Home() {
-  const { popUp } = useContext(show);
-
   return (
     <>
       {/* Hero Section */}
