@@ -1,8 +1,7 @@
 export function NaveBar(){
     const items=[
         {id:1,name:"dashboard",url:"/admin",icon:<LayoutDashboard size={15}/>},
-        {id:2,name:"add shows",url:"/admin/addshows",icon:<CirclePlus size={15} />},
-        {id:3,name:"list shows",url:"/admin/listshows",icon:<List size={15} />},
+        {id:2,name:"add shows",url:"/admin/addmovies",icon:<CirclePlus size={15} />},
         {id:4,name:"list booking",url:"/admin/listbooking",icon:<ListChecks size={15} />}
     ]
     const location=useLocation()

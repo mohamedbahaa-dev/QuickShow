@@ -1,6 +1,6 @@
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
 import { Show, SignInButton, UserButton,useUser} from '@clerk/react'
 import toast from "react-hot-toast";
@@ -10,15 +10,10 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
     const { isSignedIn } = useUser()
 
-  function handleClick() {
-    setpopUp((prev) => !prev);
-  }
 
   const headerItems = [
     { id: 1, name: "Home", link: "/home" },
     { id: 2, name: "Movies", link: "/movies" },
-    { id: 3, name: "Theaters", link: "/theaters" },
-    { id: 4, name: "MyTickets", link: "/tickets" },
   ];
 
   return (

@@ -4,6 +4,7 @@ import axios from "axios"
 import toast from "react-hot-toast"
 
 import { shows } from "@/contexts/movies"
+import { useAuthConfig } from "@/lib/useAuthConfig"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -21,10 +22,10 @@ import { Label } from "@/components/ui/label"
 
 export function AddMovie() {
   const { setMovies } = useContext(shows)
+  const authConfig = useAuthConfig()
   const [open, setOpen] = useState(false)
   const { register, handleSubmit, reset, watch } = useForm()
 
-  // نتابع الملف المختار علشان نعرض معاينة
   const logoFile = watch("posterUrl")
   const preview = logoFile?.[0] ? URL.createObjectURL(logoFile[0]) : null
 
@@ -33,16 +34,16 @@ export function AddMovie() {
       const formData = new FormData()
       formData.append("title", data.title)
       formData.append("description", data.description)
-       formData.append("posterUrl", data.posterUrl[0]) 
+      formData.append("posterUrl", data.posterUrl[0])
       formData.append("duration", data.duration)
       formData.append("genre", data.genre)
       formData.append("language", data.language)
-      formData.append("rating",0)
-     // الملف نفسه
+      formData.append("rating", 0)
 
       const response = await axios.post(
         "http://localhost:5000/api/movies",
-        formData
+        formData,
+        await authConfig()
       )
 
       setMovies((prev) => [...prev, response.data])
@@ -50,10 +51,11 @@ export function AddMovie() {
       reset()
       setOpen(false)
     } catch (error) {
-      toast.error("Failed to add film")
+      toast.error(error.response?.data?.message || "Failed to add film")
       console.log(error)
     }
   }
+
   function handleOpenChange(value) {
     setOpen(value)
     if (!value) reset()

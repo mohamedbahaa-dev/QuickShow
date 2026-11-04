@@ -11,7 +11,6 @@ export function AdminLayout(){
     duration:1000,
   }}
 />
-            <header><li>jfhfh</li></header>
     {/*header*/}
     <div className="flex gap-2">
     <NaveBar/>

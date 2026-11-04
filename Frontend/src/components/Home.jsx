@@ -76,7 +76,7 @@ export function Home() {
 
           </div>
 
-          {popUp && <Signup />}
+       
         </div>
       </div>
 

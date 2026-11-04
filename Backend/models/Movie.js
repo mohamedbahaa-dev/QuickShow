@@ -8,7 +8,6 @@ const movieSchema = new mongoose.Schema(
     duration: { type: Number }, // minutes
     genre: { type: String },
     language: { type: String },
-    rating: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

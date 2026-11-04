@@ -4,6 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const Movie = require('../models/Movie');
+const { adminOnly } = require('../middleware/auth');
 
 // نتأكد إن فولدر uploads موجود
 fs.mkdirSync('uploads', { recursive: true });
@@ -23,7 +24,7 @@ const upload = multer({
       : cb(new Error('Images only')),
 });
 
-// GET /api/movies
+// GET /api/movies  ← مفتوح للجميع
 router.get('/', async (req, res) => {
   try {
     const movies = await Movie.find().sort({ createdAt: -1 });
@@ -33,7 +34,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET /api/movies/:id
+// GET /api/movies/:id  ← مفتوح للجميع
 router.get('/:id', async (req, res) => {
   try {
     const movie = await Movie.findById(req.params.id);
@@ -44,8 +45,8 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// POST /api/movies  ← أضفنا upload.single("posterUrl")
-router.post('/', upload.single('posterUrl'), async (req, res) => {
+// POST /api/movies  ← أدمن فقط
+router.post('/', adminOnly, upload.single('posterUrl'), async (req, res) => {
   try {
     const movie = await Movie.create({
       ...req.body,
@@ -60,8 +61,8 @@ router.post('/', upload.single('posterUrl'), async (req, res) => {
   }
 });
 
-// PUT /api/movies/:id
-router.put('/:id', upload.single('posterUrl'), async (req, res) => {
+// PUT /api/movies/:id  ← أدمن فقط
+router.put('/:id', adminOnly, upload.single('posterUrl'), async (req, res) => {
   try {
     const data = { ...req.body };
     if (req.file) {
@@ -78,8 +79,8 @@ router.put('/:id', upload.single('posterUrl'), async (req, res) => {
   }
 });
 
-// DELETE /api/movies/:id
-router.delete('/:id', async (req, res) => {
+// DELETE /api/movies/:id  ← أدمن فقط
+router.delete('/:id', adminOnly, async (req, res) => {
   try {
     const movie = await Movie.findByIdAndDelete(req.params.id);
     if (!movie) return res.status(404).json({ message: 'الفيلم غير موجود' });

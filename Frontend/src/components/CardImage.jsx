@@ -17,10 +17,11 @@ export function CardImage({ logo, title, description,rating ,id,role}) {
     <Card  onMouseEnter={() => setHoveredCard(id)}
   onMouseLeave={() => setHoveredCard(null)}
   className={`
-    relative w-[250px] m-auto max-w-sm
+    relative w-[250px] max-sm:m-auto
     bg-gray-800 rounded-2xl border-0 gap-2 py-0
     transition-all duration-300
     hover:-translate-y-2 hover:scale-105
+  
     ${
       hoveredCard !== null && hoveredCard !== id
         ? "opacity-40"
@@ -30,7 +31,7 @@ export function CardImage({ logo, title, description,rating ,id,role}) {
    <div
   className="relative w-full h-[250px] rounded-t-2xl bg-cover bg-no-repeat"
   style={{
-    backgroundImage: `url(https://image.tmdb.org/t/p/w500${logo})`,
+     backgroundImage: `url(${logo})`,
   }}
 >
   <Badge

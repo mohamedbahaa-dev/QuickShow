@@ -10,21 +10,26 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { Pencil, Trash2 } from "lucide-react"
+import {Trash2 } from "lucide-react"
 import axios from "axios"
 import toast from "react-hot-toast"
 import { useContext } from "react"
 import { shows } from "@/contexts/movies"
+import { EditMovie } from "./EditMovie"
+import { Link } from "react-router"
+import { useAuthConfig } from "@/lib/useAuthConfig"
 
 export function MoviesTable() {
     const { movies, setMovies } = useContext(shows);
+    const authConfig = useAuthConfig();
   
   
    async function handleDelete(id) {
   try {
-    const response = await axios.delete(
-      `http://localhost:5000/api/movies/${id}`
-    );
+  const response = await axios.delete(
+  `http://localhost:5000/api/movies/${id}`,
+  await authConfig()
+);
 
     if (response.status === 200) {
       toast.success("Movie is deleted successfully");
@@ -59,7 +64,7 @@ export function MoviesTable() {
               title
             </TableHead>
 
-            <TableHead className="capitalize ">
+            <TableHead className="capitalize text-center ">
               description
             </TableHead>
 
@@ -76,10 +81,6 @@ export function MoviesTable() {
             </TableHead>
 
             <TableHead className="text-center capitalize">
-              rating
-            </TableHead>
-
-            <TableHead className="text-center capitalize">
               actions
             </TableHead>
 
@@ -93,7 +94,7 @@ export function MoviesTable() {
               {/* Logo */}
               <TableCell className="text-center">
                 <img
-                  src={movie.logo}
+                  src={movie.posterUrl}
                   alt={movie.title}
                   className="w-12 h-16 object-cover rounded mx-auto"
                 />
@@ -105,7 +106,7 @@ export function MoviesTable() {
               </TableCell>
 
               {/* Description */}
-              <TableCell className="max-w-[300px]">
+              <TableCell className="max-w-[300px] text-center">
                 <p className="line-clamp-2">
                   {movie.description}
                 </p>
@@ -126,28 +127,19 @@ export function MoviesTable() {
                 {movie.language}
               </TableCell>
 
-              {/* Rating */}
-              <TableCell className="text-center">
-                {movie.rating}
-              </TableCell>
-
               {/* Actions */}
               <TableCell>
                 <div className="flex justify-center items-center gap-3">
 
-                  <button
-                    className="p-2 rounded-md hover:bg-blue-500/20 transition cursor-pointer"
-                    onClick={() => console.log("Edit", movie._id)}
-                  >
-                    <Pencil size={17} />
-                  </button>
-
+                <EditMovie title={movie.title} description={movie.description} posterUrl={movie.posterUrl}
+                duration={movie.duration} genre={movie.genre} langauge={movie.language} id={movie._id}/>
                   <button
                     className="p-2 rounded-md hover:bg-red-500/20 cursor-pointer text-red-400 transition"
                     onClick={()=>handleDelete(movie._id)}
                   >
                     <Trash2 size={17} />
                   </button>
+                  <Link to={`/admin/showdays/${movie._id}`} className="bg-[black] p-4 rounded-xl hover:opacity-25 duration-300 transition-opacity">manage shows</Link>
 
                 </div>
               </TableCell>

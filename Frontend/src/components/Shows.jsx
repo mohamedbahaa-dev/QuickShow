@@ -5,23 +5,23 @@ export function Shows({title}){
     const apiKey="c0b7f3fa09aca04843f214ed43eb8e45"
     useEffect(()=>{
         axios.get(
-             `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
+               "http://localhost:5000/api/movies"
 
         ).then((response)=>{
-           setShows(response.data.results.slice(0,3))
+           setShows(response.data)
         })
     },[])
  
 
     return(
         <>
-        <div className="overflow-hidden p-2">
+        <div className=" overflow-x-hidden p-2">
             <h1 className="text-white text-sm mb-3">{title?title:"your shows"}</h1>
-            <div className="grid  grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-3 justify-items-start">
+            <div className="flex flex-wrap gap-10 ">
                 {shows.map((item)=>{
                     return(
-                        <CardImage logo={item?.poster_path} title={item?.original_title} 
-                        description={item?.overview} rating={item?.vote_average.toFixed(2)} id={item?.id}  hoveredCard={hoveredCard} setHoveredCard={setHoveredCard}/>
+                        <CardImage logo={item?.posterUrl} title={item?.title} 
+                        description={item?.description} rating={item?.rating} id={item?._id}  hoveredCard={hoveredCard} setHoveredCard={setHoveredCard} role={"user"}/>
                     )
                 })}
             </div>
