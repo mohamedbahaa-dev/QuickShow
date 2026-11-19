@@ -6,11 +6,26 @@ const fs = require('fs');
 const Movie = require('../models/Movie');
 const { adminOnly } = require('../middleware/auth');
 
+// رابط الـ Backend العام (من الـ env) — محلي: http://localhost:5000 / لايف: رابط Render
+const BASE_URL = (
+  process.env.BACKEND_PUBLIC_URL || `http://localhost:${process.env.PORT || 5000}`
+).replace(/\/+$/, '');
+
 // نتأكد إن فولدر uploads موجود
-fs.mkdirSync('uploads', { recursive: true });
+const UPLOADS_DIR = path.join(__dirname, '..', 'uploads');
+fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+
+// أي صورة قديمة متخزنة برابط localhost نحوّلها لرابط السيرفر الحالي
+const withPoster = (movie) => {
+  const obj = movie.toObject ? movie.toObject() : movie;
+  if (obj.posterUrl) {
+    obj.posterUrl = obj.posterUrl.replace(/^https?:\/\/localhost:\d+/, BASE_URL);
+  }
+  return obj;
+};
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'uploads/'),
+  destination: (req, file, cb) => cb(null, UPLOADS_DIR),
   filename: (req, file, cb) =>
     cb(null, Date.now() + path.extname(file.originalname)),
 });
@@ -28,7 +43,7 @@ const upload = multer({
 router.get('/', async (req, res) => {
   try {
     const movies = await Movie.find().sort({ createdAt: -1 });
-    res.json(movies);
+    res.json(movies.map(withPoster));
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -39,7 +54,7 @@ router.get('/:id', async (req, res) => {
   try {
     const movie = await Movie.findById(req.params.id);
     if (!movie) return res.status(404).json({ message: 'الفيلم غير موجود' });
-    res.json(movie);
+    res.json(withPoster(movie));
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -51,10 +66,10 @@ router.post('/', adminOnly, upload.single('posterUrl'), async (req, res) => {
     const movie = await Movie.create({
       ...req.body,
       posterUrl: req.file
-        ? `http://localhost:5000/uploads/${req.file.filename}`
+        ? `${BASE_URL}/uploads/${req.file.filename}`
         : '',
     });
-    res.status(201).json(movie);
+    res.status(201).json(withPoster(movie));
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.message });
@@ -66,14 +81,14 @@ router.put('/:id', adminOnly, upload.single('posterUrl'), async (req, res) => {
   try {
     const data = { ...req.body };
     if (req.file) {
-      data.posterUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+      data.posterUrl = `${BASE_URL}/uploads/${req.file.filename}`;
     }
     const movie = await Movie.findByIdAndUpdate(req.params.id, data, {
       new: true,
       runValidators: true,
     });
     if (!movie) return res.status(404).json({ message: 'الفيلم غير موجود' });
-    res.json(movie);
+    res.json(withPoster(movie));
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

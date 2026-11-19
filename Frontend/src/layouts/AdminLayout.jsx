@@ -22,5 +22,5 @@ export function AdminLayout(){
 
 }
 import { Outlet } from "react-router";
-import { NaveBar } from "@/components/NaveBar";
+import { NaveBar } from "@/components/admin/NaveBar";
 import { Toaster } from "react-hot-toast";

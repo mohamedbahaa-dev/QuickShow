@@ -1,20 +1,20 @@
 import { createBrowserRouter } from "react-router";
-import { Layout } from "@/components/Layout";
-import { Home } from "@/components/Home";
-import { Movies } from "@/components/Movies";
-import { MovieDetails } from "@/components/MovieDetails";
-import { Tickets } from "@/components/Tickets";
-import { AdminGuard } from "@/components/AdminGuard";
-import { AdminLayout } from "@/components/pages/AdminPages/AdminLayout";
-import { Dashboard } from "@/components/pages/AdminPages/Dashboard";
-import { ShowDays } from "@/components/pages/AdminPages/ShowDays";
-import { AddMovies } from "@/components/pages/AdminPages/AddMovies";
-import { ListBooking } from "@/components/pages/AdminPages/ListBooking";
+import { UserLayout } from "@/layouts/UserLayout";
+import { Home } from "@/pages/user/Home";
+import { Movies } from "@/pages/user/Movies";
+import { MovieDetails } from "@/pages/user/MovieDetails";
+import { Tickets } from "@/pages/user/Tickets";
+import { AdminGuard } from "@/routes/AdminGuard";
+import { AdminLayout } from "@/layouts/AdminLayout";
+import { Dashboard } from "@/pages/admin/Dashboard";
+import { ShowDays } from "@/pages/admin/ShowDays";
+import { AddMovies } from "@/pages/admin/AddMovies";
+import { ListBooking } from "@/pages/admin/ListBooking";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component: Layout,
+    Component: UserLayout,
     children: [
       { index: true, Component: Home },
       { path: "home", Component: Home },

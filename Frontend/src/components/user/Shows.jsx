@@ -1,3 +1,4 @@
+import { API } from "@/config/api"
 export function Shows({title}){
     let [shows,setShows]=useState([])
     const [hoveredCard, setHoveredCard] = useState(null);
@@ -5,7 +6,7 @@ export function Shows({title}){
     const apiKey="c0b7f3fa09aca04843f214ed43eb8e45"
     useEffect(()=>{
         axios.get(
-               "http://localhost:5000/api/movies"
+               `${API}/movies`
 
         ).then((response)=>{
            setShows(response.data)
@@ -37,5 +38,5 @@ export function Shows({title}){
 import axios from "axios"
 import { useEffect } from "react"
 import { useState } from "react"
-import { CardImage } from "./CardImage"
+import { CardImage } from "@/components/common/CardImage"
 import { Link } from "react-router"

@@ -1,8 +1,9 @@
+import { API } from "@/config/api"
 import { useParams, Link } from "react-router";
 import { useEffect, useState } from "react";
 import { Star, Play } from "lucide-react";
 import axios from "axios";
-import { Shows } from "./Shows";
+import { Shows } from "@/components/user/Shows";
 import { useUser } from "@clerk/react";
 import toast from "react-hot-toast";
 
@@ -30,7 +31,7 @@ export function MovieDetails() {
     async function getData() {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/movies/${id}`
+          `${API}/movies/${id}`
         );
 
         setData(response.data);
@@ -47,7 +48,7 @@ export function MovieDetails() {
     async function getShowDays() {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/movies/${id}/showdays`
+          `${API}/movies/${id}/showdays`
         );
 
         setShowDays(response.data);

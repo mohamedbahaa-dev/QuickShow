@@ -1,3 +1,4 @@
+import { API } from "@/config/api"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import toast from "react-hot-toast"
@@ -24,7 +25,7 @@ export function ListBooking() {
     async function getBookings() {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/admin/bookings",
+          `${API}/admin/bookings`,
           await authConfig()
         )
         setBookings(response.data)

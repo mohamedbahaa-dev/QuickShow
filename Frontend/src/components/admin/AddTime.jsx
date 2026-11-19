@@ -1,3 +1,4 @@
+import { API } from "@/config/api"
 
 import { useState } from "react"
 import { useForm } from "react-hook-form"
@@ -40,7 +41,7 @@ export function AddTime({ id }) {
 
 
 async function onSubmit(data) {
-  const url = `http://localhost:5000/api/showdays/${id}/showtimes`
+  const url = `${API}/showdays/${id}/showtimes`
 
   try {
     const [hours, minutes] = data.time.split(":").map(Number)

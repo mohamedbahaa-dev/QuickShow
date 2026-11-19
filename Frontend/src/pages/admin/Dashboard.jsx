@@ -1,3 +1,4 @@
+import { API } from "@/config/api"
 import { useContext, useEffect, useState } from "react"
 import axios from "axios"
 import toast from "react-hot-toast"
@@ -11,7 +12,7 @@ import {
 } from "lucide-react"
 
 import { shows } from "@/contexts/movies"
-import { CardImage } from "@/components/CardImage"
+import { CardImage } from "@/components/common/CardImage"
 import {
   Table,
   TableBody,
@@ -45,7 +46,7 @@ export function Dashboard() {
 
   useEffect(() => {
     async function getMovies() {
-      const response = await axios.get("http://localhost:5000/api/movies")
+      const response = await axios.get(`${API}/movies`)
       setMovies(response.data)
     }
 
@@ -53,8 +54,8 @@ export function Dashboard() {
       try {
         const config = await authConfig()
         const [statsRes, usersRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/admin/stats", config),
-          axios.get("http://localhost:5000/api/admin/users", config),
+          axios.get(`${API}/admin/stats`, config),
+          axios.get(`${API}/admin/users`, config),
         ])
         setStats(statsRes.data)
         setUsers(usersRes.data)
@@ -76,7 +77,7 @@ export function Dashboard() {
 
     try {
       await axios.post(
-        `http://localhost:5000/api/admin/users/${u.clerkId}/${action}`,
+        `${API}/admin/users/${u.clerkId}/${action}`,
         {},
         await authConfig()
       )
@@ -105,7 +106,7 @@ export function Dashboard() {
 
     try {
       await axios.post(
-        `http://localhost:5000/api/admin/users/${u.clerkId}/role`,
+        `${API}/admin/users/${u.clerkId}/role`,
         { role: makeAdmin ? "admin" : "user" },
         await authConfig()
       )
@@ -134,7 +135,7 @@ export function Dashboard() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/admin/users/${u.clerkId}`,
+        `${API}/admin/users/${u.clerkId}`,
         await authConfig()
       )
 

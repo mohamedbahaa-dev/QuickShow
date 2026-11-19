@@ -1,8 +1,8 @@
-import { Header } from "./Header";
+import { Header } from "@/components/layout/Header";
 import { Button } from "@/components/ui/button";
 import { useContext } from "react";
 
-import { Shows } from "./Shows";
+import { Shows } from "@/components/user/Shows";
 import { Link } from "react-router";
 export function Home() {
   return (

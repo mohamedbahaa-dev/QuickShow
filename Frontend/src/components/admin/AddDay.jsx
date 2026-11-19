@@ -1,3 +1,4 @@
+import { API } from "@/config/api"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import axios from "axios"
@@ -24,7 +25,7 @@ export function AddDay({ id }) {
   const authConfig = useAuthConfig()
 
   async function onSubmit(data) {
-    const url = `http://localhost:5000/api/movies/${id}/showdays`
+    const url = `${API}/movies/${id}/showdays`
     try {
       await axios.post(url, { date: data.date }, await authConfig())
       toast.success("date is added sucessfully")

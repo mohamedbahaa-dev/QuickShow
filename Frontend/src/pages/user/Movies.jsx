@@ -1,7 +1,8 @@
+import { API } from "@/config/api"
 
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { CardImage } from "./CardImage"
+import { CardImage } from "@/components/common/CardImage"
 import { Search } from "lucide-react"
 import { useForm } from "react-hook-form"
 
@@ -20,7 +21,7 @@ export function Movies() {
     async function getMovies() {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/movies"
+          `${API}/movies`
         )
 
         setMovies(response.data)

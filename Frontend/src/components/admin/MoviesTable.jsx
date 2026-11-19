@@ -1,3 +1,4 @@
+import { API } from "@/config/api"
 
 import {
   Table,
@@ -15,7 +16,7 @@ import axios from "axios"
 import toast from "react-hot-toast"
 import { useContext } from "react"
 import { shows } from "@/contexts/movies"
-import { EditMovie } from "./EditMovie"
+import { EditMovie } from "@/components/admin/EditMovie"
 import { Link } from "react-router"
 import { useAuthConfig } from "@/lib/useAuthConfig"
 
@@ -27,7 +28,7 @@ export function MoviesTable() {
    async function handleDelete(id) {
   try {
   const response = await axios.delete(
-  `http://localhost:5000/api/movies/${id}`,
+  `${API}/movies/${id}`,
   await authConfig()
 );
 
@@ -35,7 +36,7 @@ export function MoviesTable() {
       toast.success("Movie is deleted successfully");
 
       const moviesResponse = await axios.get(
-                "http://localhost:5000/api/movies"
+                `${API}/movies`
             );
 
       setMovies(moviesResponse.data);

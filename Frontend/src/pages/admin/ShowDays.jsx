@@ -1,10 +1,11 @@
+import { API } from "@/config/api"
 
 import { useParams, Link } from "react-router"
 import { useState, useEffect } from "react"
 import axios from "axios"
 
-import { AddDay } from "@/components/AddDay"
-import { AddTime } from "@/components/AddTime"
+import { AddDay } from "@/components/admin/AddDay"
+import { AddTime } from "@/components/admin/AddTime"
 import { Trash2 } from "lucide-react"
 import { useAuthConfig } from "@/lib/useAuthConfig"
 import toast from "react-hot-toast"
@@ -53,7 +54,7 @@ export function ShowDays() {
 async function handleDeleteTime(showdayId, timeId) {
   if (!window.confirm("Delete this showtime?")) return
   try {
-    await axios.delete(`http://localhost:5000/api/showtimes/${timeId}`, await authConfig())
+    await axios.delete(`${API}/showtimes/${timeId}`, await authConfig())
     setTimes((prev) => ({
       ...prev,
       [showdayId]: prev[showdayId].filter((t) => t._id !== timeId),
@@ -73,7 +74,7 @@ async function handleDeleteTime(showdayId, timeId) {
     async function getMovie() {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/movies/${id}`
+          `${API}/movies/${id}`
         )
 
         setMovie(response.data)
@@ -93,7 +94,7 @@ async function handleDeleteTime(showdayId, timeId) {
     async function getDates() {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/movies/${id}/showdays`
+          `${API}/movies/${id}/showdays`
         )
 
         setDates(response.data)
@@ -115,7 +116,7 @@ async function handleDeleteTime(showdayId, timeId) {
         const results = await Promise.all(
           dates.map(async (day) => {
             const response = await axios.get(
-              `http://localhost:5000/api/showdays/${day._id}/showtimes`
+              `${API}/showdays/${day._id}/showtimes`
             )
 
             return {
@@ -153,7 +154,7 @@ async function handleDeleteTime(showdayId, timeId) {
 
   try {
     await axios.delete(
-      `http://localhost:5000/api/showtimes/${timeId}`,
+      `${API}/showtimes/${timeId}`,
       await authConfig()
     )
 

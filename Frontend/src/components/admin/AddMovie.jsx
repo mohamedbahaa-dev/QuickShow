@@ -1,3 +1,4 @@
+import { API } from "@/config/api"
 import { useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import axios from "axios"
@@ -41,7 +42,7 @@ export function AddMovie() {
       formData.append("rating", 0)
 
       const response = await axios.post(
-        "http://localhost:5000/api/movies",
+        `${API}/movies`,
         formData,
         await authConfig()
       )

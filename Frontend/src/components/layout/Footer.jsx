@@ -1,4 +1,4 @@
-import { Logo } from "./Logo";
+import { Logo } from "@/components/layout/Logo";
 import { Link } from "react-router";
 
 export function Footer() {

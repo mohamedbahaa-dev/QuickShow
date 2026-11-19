@@ -1,12 +1,12 @@
+import { API } from "@/config/api"
 
-import { SeatRow } from "./SeatRow";
+import { SeatRow } from "@/components/user/SeatRow";
 import { useEffect, useState, useCallback } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useParams } from "react-router";
 import { useAuth } from "@clerk/react";
 
-const API = "http://localhost:5000/api";
 const rows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
 const seats = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 

@@ -1,16 +1,17 @@
+import { API } from "@/config/api"
 import { useContext, useEffect } from "react";
 import axios from "axios";
 
 import { shows } from "@/contexts/movies";
-import { MoviesTable } from "@/components/MoviesTable";
-import { AddMovie } from "@/components/AddMovie";
+import { MoviesTable } from "@/components/admin/MoviesTable";
+import { AddMovie } from "@/components/admin/AddMovie";
 
 export function AddMovies() {
   const { setMovies } = useContext(shows);
 
   useEffect(() => {
     async function getMovies() {
-      const response = await axios.get("http://localhost:5000/api/movies");
+      const response = await axios.get(`${API}/movies`);
       setMovies(response.data);
     }
 

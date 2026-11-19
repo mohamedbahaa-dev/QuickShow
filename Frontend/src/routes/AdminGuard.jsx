@@ -1,3 +1,4 @@
+import { API } from "@/config/api"
 import { useEffect, useState } from "react"
 import { Navigate, Outlet } from "react-router"
 import { useAuth } from "@clerk/react"
@@ -15,7 +16,7 @@ export function AdminGuard() {
     async function checkAdmin() {
       try {
         const token = await getToken()
-        const { data } = await axios.get("http://localhost:5000/api/me", {
+        const { data } = await axios.get(`${API}/me`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         if (!cancelled) setStatus(data.isAdmin ? "admin" : "denied")

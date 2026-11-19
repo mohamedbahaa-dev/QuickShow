@@ -1,3 +1,4 @@
+import { API } from "@/config/api"
 import { useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import axios from "axios"
@@ -66,7 +67,7 @@ export function EditMovie({
       }
 
  const response = await axios.put(
-  `http://localhost:5000/api/movies/${id}`,
+  `${API}/movies/${id}`,
   formData,
   await authConfig()
 )

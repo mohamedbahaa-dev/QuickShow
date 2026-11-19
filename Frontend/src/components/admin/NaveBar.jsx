@@ -9,7 +9,7 @@ export function NaveBar(){
   return(
     <nav className="shadow-sm shadow-gray-600  w-[150px] min-h-screen max-sm:w-[50px]  ">
         <div className=" text-center  flex flex-col items-center">
-            <img src="/public/profile.png" className="rounded-full w-[50px] mt-3 max-md:w-[30px] "/>
+            <img src="/profile.png" className="rounded-full w-[50px] mt-3 max-md:w-[30px] "/>
             <h3 className="text-white text-sm capitalize max-sm:text-[10px]  ">admin user</h3>
         </div>
         <ul className=" pr-3 pl-0  flex flex-col items-start">
