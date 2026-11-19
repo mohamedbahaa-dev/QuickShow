@@ -9,7 +9,7 @@ const router = express.Router();
 const Showtime = require("../models/Showtime");
 const SeatHold = require("../models/SeatHold");
 const Booking = require("../models/Booking");
-const Payment = require("../models/Payment");
+const Payment = require("../models/payment");
 
 const {
   authenticate,
